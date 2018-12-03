@@ -9,32 +9,32 @@ package inmobiliaria.modelo;
  *
  * @author Esteban
  */
-public class inmuebles {
-    private int id_inmuebles;
+public class Inmueble {
+    private int id_inmueble;
     private String domicilio;
-    private int ambientes;
+    private String ambientes;
     private double costo;
-    private boolean disponible;
+    private boolean disponibilidad;
     private int id_duenio;
 
-    public inmuebles(int id_inmuebles, String domicilio, int ambientes, double costo, boolean disponible, int id_duenio) {
-        this.id_inmuebles = id_inmuebles;
+    public Inmueble(int id_inmueble, String domicilio, String ambientes, double costo, boolean disponibilidad, int id_duenio) {
+        this.id_inmueble = id_inmueble;
         this.domicilio = domicilio;
         this.ambientes = ambientes;
         this.costo = costo;
-        this.disponible = disponible;
+        this.disponibilidad = disponibilidad;
         this.id_duenio = id_duenio;
     }
 
-    public int getId_inmuebles() {
-        return id_inmuebles;
+    public int getId_inmueble() {
+        return id_inmueble;
     }
 
     public String getDomicilio() {
         return domicilio;
     }
 
-    public int getAmbientes() {
+    public String getAmbientes() {
         return ambientes;
     }
 
@@ -43,22 +43,22 @@ public class inmuebles {
     }
 
     public boolean isDisponible() {
-        return disponible;
+        return disponibilidad;
     }
 
     public int getId_duenio() {
         return id_duenio;
     }
 
-    public void setId_inmuebles(int id_inmuebles) {
-        this.id_inmuebles = id_inmuebles;
+    public void setId_inmueble(int id_inmueble) {
+        this.id_inmueble = id_inmueble;
     }
 
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
 
-    public void setAmbientes(int ambientes) {
+    public void setAmbientes(String ambientes) {
         this.ambientes = ambientes;
     }
 
@@ -66,8 +66,8 @@ public class inmuebles {
         this.costo = costo;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setDisponible(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 
     public void setId_duenio(int id_duenio) {
