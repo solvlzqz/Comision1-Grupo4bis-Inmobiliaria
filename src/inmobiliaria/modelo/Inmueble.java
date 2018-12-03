@@ -26,6 +26,10 @@ public class Inmueble {
         this.id_duenio = id_duenio;
     }
 
+    public Inmueble() {
+    }
+
+    
     public int getId_inmueble() {
         return id_inmueble;
     }
@@ -42,7 +46,7 @@ public class Inmueble {
         return costo;
     }
 
-    public boolean isDisponible() {
+    public boolean getDisponibilidad() {
         return disponibilidad;
     }
 
