@@ -9,23 +9,23 @@ package inmobiliaria.modelo;
  *
  * @author Esteban
  */
-public class clientes {
-    private int id_cliente;
+public class persona {
+    private int id_persona;
     private int id_duenio;
     private String dni;
     private String celu;
     private String nombre;
 
-    public clientes(int id_cliente, int id_duenio, String dni, String celu, String nombre) {
-        this.id_cliente = id_cliente;
+    public persona(int id_persona, int id_duenio, String dni, String celu, String nombre) {
+        this.id_persona = id_persona;
         this.id_duenio = id_duenio;
         this.dni = dni;
         this.celu = celu;
         this.nombre = nombre;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getIdPersona() {
+        return id_persona;
     }
 
     public int getId_duenio() {
@@ -44,8 +44,8 @@ public class clientes {
         return nombre;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdPersona(int id_persona) {
+        this.id_persona = id_persona;
     }
 
     public void setId_duenio(int id_duenio) {
