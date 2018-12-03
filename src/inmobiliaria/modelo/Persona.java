@@ -24,6 +24,9 @@ public class Persona {
         this.nombre_apellido = nombre_apellido;
     }
 
+    public Persona() {
+    }
+    
     public int getIdPersona() {
         return id_persona;
     }
@@ -60,7 +63,7 @@ public class Persona {
         this.celu = celu;
     }
 
-    public void setNombre(String nombre_apellido) {
+    public void setNombreApellido(String nombre_apellido) {
         this.nombre_apellido = nombre_apellido;
     }
     
