@@ -22,6 +22,10 @@ public class Alquiler {
         this.costo = costo;
     }
 
+    public Alquiler() {
+    }
+    
+
     public int getidPersona() {
         return id_persona;
     }
