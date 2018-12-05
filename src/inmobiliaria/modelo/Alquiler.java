@@ -6,6 +6,7 @@ import java.time.LocalDate;
 /**
  *
  * @author Esteban
+ * CAMBIO
  */
 public class Alquiler {
     private int id_persona;
