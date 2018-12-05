@@ -19,7 +19,7 @@ import java.util.List;
  * @author Sole
  */
 public class AlquilerData {
-    
+    // variable de tipo Connection
     private Connection con = null;
 
     public AlquilerData(Conexion conexion) {
