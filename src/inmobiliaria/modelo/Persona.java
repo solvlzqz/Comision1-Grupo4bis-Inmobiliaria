@@ -23,6 +23,14 @@ public class Persona {
         this.celu = celu;
         this.nombre_apellido = nombre_apellido;
     }
+    
+    public Persona(int id_duenio, String dni, String celu, String nombre_apellido) {
+        this.id_persona = -1;
+        this.id_duenio = id_duenio;
+        this.dni = dni;
+        this.celu = celu;
+        this.nombre_apellido = nombre_apellido;
+    }
 
     public Persona() {
     }
