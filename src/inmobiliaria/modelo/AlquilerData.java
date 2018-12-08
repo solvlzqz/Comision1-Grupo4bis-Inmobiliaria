@@ -43,8 +43,7 @@ public class AlquilerData {
             ResultSet rs = statement.getGeneratedKeys();
 
             if (rs.next()) {
-                alquiler.setId_inmuebles(rs.getInt(1));
-                alquiler.setidPersona(rs.getInt(1));
+                alquiler.setId_alquiler(rs.getInt(1));
             } else {
                 System.out.println("No se pudo obtener el id luego de insertar un alquiler");
             }
@@ -65,6 +64,7 @@ public class AlquilerData {
             Alquiler alquiler;
             while(resultSet.next()){
                 alquiler = new Alquiler();
+                alquiler.setId_alquiler(resultSet.getInt("id_alquiler"));
                 alquiler.setCosto(resultSet.getInt("costo"));
                 alquiler.setId_inmuebles(resultSet.getInt("id_inmuebles"));
                 alquiler.setfechaFin(resultSet.getDate("fechaFin").toLocalDate());
@@ -82,14 +82,13 @@ public class AlquilerData {
         return alquileres;
     }
 
-    public void borrarAlquiler(int id_inmuebles, int id_persona){
+    public void borrarAlquiler(int id_alquiler){
     try {
             
-            String sql = "DELETE FROM alquiler WHERE id_inmuebles= ? AND id_persona= ?;";
+            String sql = "DELETE FROM alquiler WHERE id_alquiler= ?;";
 
             PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id_inmuebles);
-            statement.setInt(2, id_persona);
+            statement.setInt(1, id_alquiler);
            
             
             statement.executeUpdate();
@@ -107,7 +106,7 @@ public class AlquilerData {
     
         try {
             
-            String sql = "UPDATE alquiler SET fecha_inicio = ?, fechaFin = ? , costo =? WHERE id_inmuebles = ? AND id_persona = ?;";
+            String sql = "UPDATE alquiler SET fecha_inicio = ?, fechaFin = ? , costo =?, id_inmuebles = ?, id_persona = ? WHERE id_alquiler = ?;";
 
             PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setDate(1, Date.valueOf(alquiler.getfecha_inicio()));
@@ -115,6 +114,7 @@ public class AlquilerData {
             statement.setDouble(3, alquiler.getCosto());
             statement.setInt(4, alquiler.getId_inmuebles());
             statement.setInt(5, alquiler.getidPersona());
+            statement.setInt(6, alquiler.getId_alquiler());
             statement.executeUpdate();
             
          
@@ -126,21 +126,21 @@ public class AlquilerData {
     
     }
 
-    public Alquiler buscarAlquiler(int id_inmuebles, int id_persona){
+    public Alquiler buscarAlquiler(int id_alquiler){
     Alquiler alquiler=null;
     try {
             
-            String sql = "SELECT * FROM alquiler WHERE id_inmuebles =? AND id_persona = ?;";
+            String sql = "SELECT * FROM alquiler WHERE id_alquiler;";
 
             PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id_inmuebles);
-            statement.setInt(2, id_persona);        
+            statement.setInt(1, id_alquiler);    
             
             ResultSet resultSet=statement.executeQuery();
             
             while(resultSet.next()){
                 
                 alquiler = new Alquiler();
+                alquiler.setId_alquiler(resultSet.getInt("id_alquiler"));
                 alquiler.setCosto(resultSet.getInt("costo"));
                 alquiler.setId_inmuebles(resultSet.getInt("id_inmuebles"));
                 alquiler.setfechaFin(resultSet.getDate("fechaFin").toLocalDate());

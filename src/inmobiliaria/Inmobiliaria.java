@@ -5,8 +5,6 @@
  */
 package inmobiliaria;
 
-import inmobiliaria.modelo.Persona;
-import inmobiliaria.modelo.PersonaData;
 
 /**
  *
@@ -18,8 +16,7 @@ public class Inmobiliaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PersonaData pd = new PersonaData();
-        Persona persona1 = new Persona(1, 2,"28743521","2664536231","Fabian Perez"); 
+        
         // TODO code application logic here
     }
     
