@@ -15,7 +15,9 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
      * Creates new form VistaAlquiler
      */
     public VistaAlquiler() {
-        initComponents();
+        initComponents(); 
+        
+        //conexion con = new Conexion("jdbc:mysql:
     }
 
     /**
