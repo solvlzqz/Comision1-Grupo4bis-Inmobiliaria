@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +24,11 @@ public class InmuebleData {
      private Connection con = null;
 
     public InmuebleData(Conexion conexion) {
-        con = conexion.getConexion();
+         try {
+             con = conexion.getConexion();
+         } catch (SQLException ex) {
+             Logger.getLogger(InmuebleData.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
     public void guardarInmueble(Inmueble inmueble) {

@@ -5,17 +5,33 @@
  */
 package inmobiliaria.vistas;
 
+import inmobiliaria.modelo.Conexion;
+import inmobiliaria.modelo.PersonaData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
  */
 public class VistaPersona extends javax.swing.JInternalFrame {
-
+private PersonaData personaData;
+private Conexion con;
     /**
      * Creates new form VistaPersona
      */
     public VistaPersona() {
+    try {
         initComponents();
+        
+        con = new Conexion();
+        personaData = new PersonaData(con);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(VistaPersona.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+        
+        
     }
 
     /**
@@ -44,6 +60,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
         btActualizar = new javax.swing.JButton();
         btBuscar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
+        btLimpiar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
@@ -75,6 +92,8 @@ public class VistaPersona extends javax.swing.JInternalFrame {
 
         btEliminar.setText("ELIMINAR");
 
+        btLimpiar.setText("LIMPIAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,19 +117,20 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                             .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                             .addComponent(jtCelular))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btBuscar)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 46, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btGuardar))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(187, 187, 187))
         );
@@ -121,7 +141,8 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -142,12 +163,12 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(chInquilino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGuardar)
                     .addComponent(btActualizar)
-                    .addComponent(btBuscar)
-                    .addComponent(btEliminar))
+                    .addComponent(btEliminar)
+                    .addComponent(btLimpiar))
                 .addContainerGap())
         );
 
@@ -160,6 +181,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btGuardar;
+    private javax.swing.JButton btLimpiar;
     private javax.swing.JCheckBox chDuenio;
     private javax.swing.JCheckBox chInquilino;
     private javax.swing.JLabel jLabel1;
