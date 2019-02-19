@@ -85,6 +85,11 @@ private Conexion con;
         jLabel7.setText("INQUILINO");
 
         btGuardar.setText("GUARDAR");
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGuardarActionPerformed(evt);
+            }
+        });
 
         btActualizar.setText("ACTUALIZAR");
 
@@ -174,6 +179,20 @@ private Conexion con;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+
+        // TODO add your handling code here:
+        
+        String nombre = jtNombre.getText();
+        String dni = jtDni.getText();
+        String celular = jtCelular.getText();
+        boolean duenio = chDuenio.isEnabled();
+        boolean inquilino = chInquilino.isEnabled();
+        
+        Persona persona = new Persona(nombre, dni, celular, duenio, inquilino);
+        personaData.guardarPersona(persona);
+    }//GEN-LAST:event_btGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
