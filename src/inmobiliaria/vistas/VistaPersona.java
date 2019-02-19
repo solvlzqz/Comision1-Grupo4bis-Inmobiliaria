@@ -6,6 +6,7 @@
 package inmobiliaria.vistas;
 
 import inmobiliaria.modelo.Conexion;
+import inmobiliaria.modelo.Persona;
 import inmobiliaria.modelo.PersonaData;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,9 +50,6 @@ private Conexion con;
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        chDuenio = new javax.swing.JCheckBox();
-        jLabel7 = new javax.swing.JLabel();
-        chInquilino = new javax.swing.JCheckBox();
         jtId = new javax.swing.JTextField();
         jtNombre = new javax.swing.JTextField();
         jtDni = new javax.swing.JTextField();
@@ -61,6 +59,7 @@ private Conexion con;
         btBuscar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btLimpiar = new javax.swing.JButton();
+        jtDuenio = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
@@ -81,9 +80,6 @@ private Conexion con;
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("DUEÑO");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("INQUILINO");
-
         btGuardar.setText("GUARDAR");
         btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,52 +88,72 @@ private Conexion con;
         });
 
         btActualizar.setText("ACTUALIZAR");
+        btActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarActionPerformed(evt);
+            }
+        });
 
         btBuscar.setText("BUSCAR");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         btEliminar.setText("ELIMINAR");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
 
         btLimpiar.setText("LIMPIAR");
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtNombre)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(chInquilino)
-                            .addComponent(chDuenio)
-                            .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                            .addComponent(jtCelular))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btBuscar)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btGuardar))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(187, 187, 187))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtNombre)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                    .addComponent(jtCelular))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtDuenio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(192, 192, 192))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btActualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btGuardar)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,12 +179,8 @@ private Conexion con;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(chDuenio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(chInquilino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                    .addComponent(jtDuenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGuardar)
                     .addComponent(btActualizar)
@@ -184,15 +196,68 @@ private Conexion con;
 
         // TODO add your handling code here:
         
-        String nombre = jtNombre.getText();
+        String nombre_apellido = jtNombre.getText();
+        String dni = jtDni.getText();
+        String celu = jtCelular.getText();
+         int id_duenio=Integer.parseInt(jtDuenio.getText());
+         
+       
+        Persona persona = new Persona(id_duenio, dni, celu, nombre_apellido);
+        personaData.guardarPersona(persona);
+         
+        jtId.setText(persona.getIdPersona() + "");
+    }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        // TODO add your handling code here:
+        
+        int id=Integer.parseInt(jtId.getText());
+        personaData.borrarPersona(id);
+    }//GEN-LAST:event_btEliminarActionPerformed
+
+    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+        // TODO add your handling code here:
+        
+        if (jtId.getText()!=null){
+            String nombre_apellido = jtNombre.getText();
         String dni = jtDni.getText();
         String celular = jtCelular.getText();
-        boolean duenio = chDuenio.isEnabled();
-        boolean inquilino = chInquilino.isEnabled();
+        int id_duenio=Integer.parseInt(jtDuenio.getText());
         
-        Persona persona = new Persona(nombre, dni, celular, duenio, inquilino);
-        personaData.guardarPersona(persona);
-    }//GEN-LAST:event_btGuardarActionPerformed
+       
+        
+        Persona persona = new Persona(id_duenio,nombre_apellido, dni, celular);
+        personaData.actualizarPersona(persona);
+        }
+    }//GEN-LAST:event_btActualizarActionPerformed
+
+    private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+        // TODO add your handling code here:
+        
+        jtId.setText("");
+        jtNombre.setText("");
+        jtDni.setText("");
+        jtCelular.setText("");
+        jtDuenio.setText("");
+        
+    }//GEN-LAST:event_btLimpiarActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(jtId.getText());
+        int id_duenio=Integer.parseInt(jtDuenio.getText());
+        Persona persona = personaData.buscarPersona(id);
+        
+        if (persona!=null){
+            jtId.setText(persona.getIdPersona()+"");
+            jtNombre.setText(persona.getNombreApellido());
+            jtDni.setText(persona.getDni());
+            jtCelular.setText(persona.getCelu());
+            jtDuenio.setText(persona.getId_duenio()+"");
+            
+            
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -201,17 +266,15 @@ private Conexion con;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btLimpiar;
-    private javax.swing.JCheckBox chDuenio;
-    private javax.swing.JCheckBox chInquilino;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jtCelular;
     private javax.swing.JTextField jtDni;
+    private javax.swing.JTextField jtDuenio;
     private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
