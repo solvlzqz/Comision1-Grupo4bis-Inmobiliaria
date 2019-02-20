@@ -101,6 +101,11 @@ private Conexion con;
         });
 
         btBuscar.setText("BUSCAR");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         btEliminar.setText("ELIMINAR");
         btEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +115,11 @@ private Conexion con;
         });
 
         jbLimpiar.setText("LIMPIAR");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,6 +261,34 @@ private Conexion con;
         inmuebleData.actualizarInmueble(inmueble);
         }
     }//GEN-LAST:event_btActualizarActionPerformed
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        // TODO add your handling code here:
+        
+         jtId.setText("");
+        jtCosto.setText("");
+        jtAmbientes.setText("");
+        jtDireccion.setText("");
+        jtDuenio.setText("");
+        chDisponibilidad.setEnabled(false);
+    }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        // TODO add your handling code here:
+        
+        int id_inmueble = Integer.parseInt(jtId.getText());
+        
+       Inmueble inmueble = inmuebleData.buscarInmueble(id_inmueble);
+        
+        if (inmueble!=null){
+            
+            jtId.setText(inmueble.getId_inmueble()+"");
+            jtDireccion.setText(inmueble.getDomicilio());
+            jtAmbientes.setText(inmueble.getAmbientes());
+            jtCosto.setText(inmueble.getCosto()+"");
+            jtDuenio.setText(inmueble.getId_duenio()+"");
+            chDisponibilidad.setSelected(inmueble.getDisponibilidad());
+    }//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
