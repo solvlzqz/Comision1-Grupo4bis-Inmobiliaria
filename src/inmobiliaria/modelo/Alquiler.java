@@ -36,6 +36,10 @@ public class Alquiler {
  
     public Alquiler() {
     }
+
+    public Alquiler(int id_alquiler, LocalDate fecha, int costo, String inmueble, String nombre_apellido) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     public int getId_alquiler() {

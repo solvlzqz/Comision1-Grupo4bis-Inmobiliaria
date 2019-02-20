@@ -5,9 +5,11 @@
  */
 package inmobiliaria.vistas;
 
+import inmobiliaria.modelo.Alquiler;
 import inmobiliaria.modelo.AlquilerData;
 import inmobiliaria.modelo.Conexion;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -219,7 +221,11 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
             String nombre_apellido = jTInquilino.getText();
             String inmueble = jTInmueble.getText();
             int costo= Integer.parseInt(jTCosto.getText());
-            LocalDate fecha = LocalDate.parse(jTFecha.getText(), DataTimeFormatter.ofPatter("dd/MM/yyy")); 
+            LocalDate fecha = LocalDate.parse(jTFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyy"));
+            int id_alquiler=Integer.parseInt(jTId.getText());
+            
+            Alquiler alquiler = new Alquiler (id_alquiler, fecha, costo, inmueble, nombre_apellido);
+            alquilerData.guardarAlquiler(alquiler);
             
         }
     }//GEN-LAST:event_BtActualizarActionPerformed
@@ -230,7 +236,13 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
         String nombre_apellido = jTInquilino.getText();
         String inmueble = jTInmueble.getText();
         int costo=Integer.parseInt(jTCosto.getText());
+        int id_alquiler = Integer.parseInt(jTId.getText());
+        LocalDate fecha = LocalDate.parse(jTFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         
+        Alquiler alquiler = new Alquiler (id_alquiler, fecha, costo, inmueble, nombre_apellido);
+        alquilerData.guardarAlquiler(alquiler);
+        
+        jTId.setText(alquiler.getId_alquiler() +"");
         
     }//GEN-LAST:event_BtGuardarActionPerformed
 
