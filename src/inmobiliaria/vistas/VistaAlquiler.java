@@ -5,19 +5,31 @@
  */
 package inmobiliaria.vistas;
 
+import inmobiliaria.modelo.AlquilerData;
+import inmobiliaria.modelo.Conexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
  */
 public class VistaAlquiler extends javax.swing.JInternalFrame {
+    private AlquilerData alquilerData;
+    private Conexion con;
 
     /**
      * Creates new form VistaAlquiler
      */
     public VistaAlquiler() {
-        initComponents(); 
-        
-        //conexion con = new Conexion("jdbc:mysql:
+        try {
+            initComponents();
+            
+            con= new Conexion();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VistaAlquiler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -67,10 +79,31 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
         BtGuardar.setText("GUARDAR");
 
         BtActualizar.setText("ACTUALIZAR");
+        BtActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtActualizarActionPerformed(evt);
+            }
+        });
 
         BtBuscar.setText("BUSCAR");
+        BtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtBuscarActionPerformed(evt);
+            }
+        });
 
         BtEliminar.setText("ELIMINAR");
+        BtEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtEliminarActionPerformed(evt);
+            }
+        });
+
+        jTId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTIdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,28 +111,6 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTCosto)
-                                .addGap(22, 22, 22))
-                            .addComponent(jTInquilino)
-                            .addComponent(jTInmueble)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 211, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 36, Short.MAX_VALUE)
                         .addComponent(BtEliminar)
@@ -108,7 +119,30 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtActualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtGuardar)))
+                        .addComponent(BtGuardar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTCosto)
+                                        .addGap(22, 22, 22))
+                                    .addComponent(jTInquilino)
+                                    .addComponent(jTInmueble)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 211, Short.MAX_VALUE)))))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(206, 206, 206)
@@ -150,6 +184,39 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTIdActionPerformed
+
+    private void BtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarActionPerformed
+        // TODO add your handling code here:
+        
+        int id=Integer.parseInt(jTId.getText());
+        alquilerData.borrarAlquiler(id);
+    }//GEN-LAST:event_BtEliminarActionPerformed
+
+    private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
+        // TODO add your handling code here:
+        
+        int id= Integer.parseInt(jTId.getText());
+        int 
+         Alquiler alquiler = alquilerData.buscarAlquiler(id);
+         
+    }//GEN-LAST:event_BtBuscarActionPerformed
+
+    private void BtActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtActualizarActionPerformed
+        // TODO add your handling code here:
+        
+        if (jTId.getText() !=null){
+            String nombre_apellido = jTInmueble.getText();
+            String inmueble = jTInmueble.getText();
+            int costo= Integer.parseInt(jTCosto.getText());
+            String fecha =  
+            
+        }
+    }//GEN-LAST:event_BtActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

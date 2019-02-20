@@ -220,9 +220,9 @@ private Conexion con;
         
         if (jtId.getText()!=null){
             String nombre_apellido = jtNombre.getText();
-        String dni = jtDni.getText();
-        String celular = jtCelular.getText();
-        int id_duenio=Integer.parseInt(jtDuenio.getText());
+            String dni = jtDni.getText();
+            String celular = jtCelular.getText();
+            int id_duenio=Integer.parseInt(jtDuenio.getText());
         
        
         
