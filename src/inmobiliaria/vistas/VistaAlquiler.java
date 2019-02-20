@@ -7,6 +7,7 @@ package inmobiliaria.vistas;
 
 import inmobiliaria.modelo.AlquilerData;
 import inmobiliaria.modelo.Conexion;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,6 +78,11 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
         jLabel6.setText("FECHA DE INICIO");
 
         BtGuardar.setText("GUARDAR");
+        BtGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtGuardarActionPerformed(evt);
+            }
+        });
 
         BtActualizar.setText("ACTUALIZAR");
         BtActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -210,13 +216,23 @@ public class VistaAlquiler extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         if (jTId.getText() !=null){
-            String nombre_apellido = jTInmueble.getText();
+            String nombre_apellido = jTInquilino.getText();
             String inmueble = jTInmueble.getText();
             int costo= Integer.parseInt(jTCosto.getText());
-            String fecha =  
+            LocalDate fecha = LocalDate.parse(jTFecha.getText(), DataTimeFormatter.ofPatter("dd/MM/yyy")); 
             
         }
     }//GEN-LAST:event_BtActualizarActionPerformed
+
+    private void BtGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtGuardarActionPerformed
+        // TODO add your handling code here:
+        
+        String nombre_apellido = jTInquilino.getText();
+        String inmueble = jTInmueble.getText();
+        int costo=Integer.parseInt(jTCosto.getText());
+        
+        
+    }//GEN-LAST:event_BtGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
